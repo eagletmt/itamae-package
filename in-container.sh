@@ -1,4 +1,7 @@
 #!/bin/bash -xe
+if id -un ${BUILDBOT_UID:-1999} > /dev/null 2>&1; then
+  userdel $(id -un ${BUILDBOT_UID:-1999})
+fi
 useradd -u ${BUILDBOT_UID:-1999} -m buildbot
 chown buildbot:buildbot /home/buildbot
 
